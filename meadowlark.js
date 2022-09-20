@@ -21,15 +21,13 @@ app.get('/', function(req,res){
     res.render('home');
 });
 
-var nonsenses = ['bla bla bla', 'ble ble ble', 'hihihi'];
 
 app.get('/about',function(req,res){
     // res.type('text/plain');
     // res.send('About Meadowlark Travel');
-    var i = Math.floor(Math.random() * nonsenses.length);
-    console.log(i)
-    var randomNonsenses = nonsenses[i]
-    res.render('about', {nonsenses: randomNonsenses}); //refresh to see dynamic content
+    var nonsense = require('./lib/nonsense');
+
+    res.render('about', {nonsenses: nonsense.getNonsense()}); //refresh to see dynamic content
 });
 
 // custom 404 catch-all handler (middleware)
